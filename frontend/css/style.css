@@ -85,3 +85,14 @@ tr:hover td { background: #f8faff; }
   body { background: #fff; }
   .card { border: none; box-shadow: none; }
 }
+
+/* Seat map + My seat (allocation pages) */
+.front { text-align: center; padding: .4rem; border: 2px dashed var(--line); border-radius: 6px; margin: .75rem 0; font-weight: 700; }
+.seat-grid { overflow-x: auto; }
+.legend { display: flex; gap: 1rem; flex-wrap: wrap; font-size: .85rem; }
+.legend span::before { content: ""; display: inline-block; width: .9rem; height: .9rem; margin-right: .3rem; border-radius: 3px; vertical-align: -2px; border: 1px solid var(--line); background: #fff; }
+.legend .l-taken::before { background: #e6edff; }
+.legend .l-blocked::before { background: #fbe4e4; }
+.big-seat { font-size: 2rem; font-weight: 700; margin: .4rem 0; }
+tr.active td { background: #f3f6ff; }
+@media print { .print-break { break-before: page; } .seat { font-size: 7pt; min-height: 0; } }

@@ -12,18 +12,24 @@ Cloud-based automatic exam seat allocation. Admins describe halls and exams once
 
 ## Run it
 
+You need **Docker Desktop** (running) and **Node.js 20+**. Teammates get the shared `backend/.env` privately (it points at the team's Neon database, which is already set up and seeded), so they skip the two `db:` steps.
+
 ```bash
 cd backend
-cp .env.example .env        # fill in (see comments); never commit .env
+# put the shared .env in backend/  (never commit it)
 npm install
-npm run floci:up            # start Floci in Docker
-npm run db:setup            # tables + per-service least-privilege DB roles (first time only)
-npm run db:seed             # demo accounts + halls (first time only)
-npm run provision           # create all AWS resources on Floci, load secrets
-npm run deploy:web          # upload the frontend to S3
-npm run dev                 # gateway :8080 + all services
+npm run floci:up            # start Floci (local AWS) in Docker
+npm run provision           # create all AWS resources on Floci + load secrets (safe to re-run)
+npm run deploy:web          # upload the frontend to the S3 website bucket
+npm run dev                 # gateway :8080 + auth, halls, exams, allocation services + event worker
 ```
 
+First-time database setup (already done for the team database): `npm run db:setup` then `npm run db:seed`.
+
 App: http://localhost:4566/esp-frontend/index.html · Health: http://localhost:8080/api/health · Floci console: http://localhost:4566/_floci/ui
+
+Demo logins: `admin@esp.test`, `proctor1@esp.test` … `proctor3@esp.test`, students `S1001` … `S1080`. Passwords are `SEED_*_PASSWORD` in `.env`.
+
+Tests (with `npm run dev` running): `npm run test:exams`, `npm run test:alloc`. Results are written to [docs/tests/](docs/tests/).
 
 See [docs/CONTRACT.md](docs/CONTRACT.md) for the architecture, ownership, data model, events and business rules.
