@@ -40,7 +40,9 @@ async function main() {
       const role = `esp_${s}`;
       const pw = ensureEnvPassword(s).replace(/'/g, "''");
       const exists = (await db.query('SELECT 1 FROM pg_roles WHERE rolname = $1', [role])).rowCount > 0;
-      await db.query(`${exists ? 'ALTER' : 'CREATE'} ROLE ${role} WITH LOGIN PASSWORD '${pw}' NOSUPERUSER NOCREATEDB NOCREATEROLE`);
+      await db.query(exists
+        ? `ALTER ROLE ${role} WITH LOGIN PASSWORD '${pw}'`
+        : `CREATE ROLE ${role} WITH LOGIN PASSWORD '${pw}' NOSUPERUSER NOCREATEDB NOCREATEROLE`);
       console.log(`  ${role} ${exists ? 'updated' : 'created'}`);
     }
 
