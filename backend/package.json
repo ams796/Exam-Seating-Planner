@@ -9,7 +9,8 @@
     "db:seed": "node db/seed.js",
     "provision": "node infra/provision.js",
     "deploy:web": "node infra/deploy-frontend.js",
-    "floci:up": "docker compose -f ../infra/floci/docker-compose.yml up -d"
+    "floci:up": "docker compose -f ../infra/floci/docker-compose.yml up -d",
+    "test:exams": "node tests/exams.api.test.js"
   },
   "keywords": [],
   "author": "",
