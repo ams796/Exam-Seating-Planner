@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Exam Seating Planner – Log in</title>
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+<header class="app-header">
+  <h1>Exam Seating Planner</h1>
+</header>
+<main class="container narrow">
+  <section class="panel">
+    <h2>Log in</h2>
+    <form id="login-form" novalidate>
+      <label for="login">Email or student code</label>
+      <input id="login" name="login" autocomplete="username" required maxlength="100">
+      <label for="password">Password</label>
+      <input id="password" name="password" type="password" autocomplete="current-password" required maxlength="200">
+      <button type="submit">Log in</button>
+    </form>
+    <p id="login-message" class="message" aria-live="polite"></p>
+  </section>
+</main>
+<script src="js/config.js" defer></script>
+<script src="js/api.js" defer></script>
+<script src="js/login.js" defer></script>
+</body>
+</html>

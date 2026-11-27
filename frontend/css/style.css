@@ -1,0 +1,93 @@
+/* Exam Seating Planner: shared styles (same base as the Lab 5 starter) */
+* { box-sizing: border-box; }
+
+:root {
+  --navy: #203864;
+  --ink: #1f2933;
+  --muted: #52606d;
+  --line: #d9e2ec;
+  --bg: #f4f6f8;
+  --ok: #1b7a3d;
+  --bad: #b42318;
+  --seat: #e8f0fb;
+  --seat-taken: #cfe0f7;
+  --seat-blocked: #c9ced6;
+}
+
+body { margin: 0; font-family: Arial, sans-serif; background: var(--bg); color: var(--ink); }
+
+.app-header {
+  display: flex; flex-wrap: wrap; gap: 1rem; align-items: center; justify-content: space-between;
+  padding: 1rem 1.5rem; background: var(--navy); color: #fff;
+}
+.app-header h1 { margin: 0; font-size: 1.3rem; }
+.app-header nav { display: flex; flex-wrap: wrap; gap: 0.75rem; align-items: center; }
+.app-header a { color: #fff; }
+.app-header .who { opacity: 0.85; font-size: 0.9rem; }
+
+.container { width: min(1100px, 94%); margin: 1.5rem auto; display: grid; gap: 1.25rem; }
+.narrow { width: min(420px, 94%); }
+
+.panel { background: #fff; padding: 1.25rem 1.5rem; border-radius: 10px; }
+.panel h2 { margin-top: 0; font-size: 1.15rem; }
+
+form { display: grid; gap: 0.75rem; }
+label { font-weight: 600; font-size: 0.9rem; }
+input, select, button { padding: 0.6rem 0.75rem; font: inherit; border: 1px solid var(--line); border-radius: 6px; }
+button { background: var(--navy); color: #fff; border: none; cursor: pointer; }
+button.secondary { background: #fff; color: var(--navy); border: 1px solid var(--navy); }
+button.danger { background: var(--bad); }
+button:disabled { opacity: 0.5; cursor: not-allowed; }
+
+.row { display: flex; flex-wrap: wrap; gap: 0.75rem; align-items: center; }
+.row > * { flex: 0 1 auto; }
+.grow { flex: 1 1 200px; }
+
+.message { min-height: 1.25rem; font-weight: 600; margin: 0.5rem 0 0; }
+.message.ok { color: var(--ok); }
+.message.error { color: var(--bad); }
+
+table { width: 100%; border-collapse: collapse; font-size: 0.92rem; }
+th, td { text-align: left; padding: 0.5rem; border-bottom: 1px solid var(--line); }
+th { background: #f0f4f8; }
+td .inline { display: flex; gap: 0.35rem; }
+td input { width: 5.5rem; padding: 0.35rem; }
+td select { padding: 0.35rem; }
+td button { padding: 0.35rem 0.6rem; }
+
+.badge { display: inline-block; padding: 0.1rem 0.55rem; border-radius: 999px; font-size: 0.8rem; font-weight: 700; }
+.badge.none { background: #eef0f3; color: var(--muted); }
+.badge.draft { background: #fff3cd; color: #7a5b00; }
+.badge.published { background: #dcf3e4; color: var(--ok); }
+
+.cards { display: grid; gap: 1rem; grid-template-columns: repeat(auto-fill, minmax(240px, 1fr)); }
+.card { border: 1px solid var(--line); border-radius: 10px; padding: 1rem; background: #fff; }
+.card h3 { margin: 0 0 0.25rem; }
+.card .seat { font-size: 2rem; font-weight: 700; color: var(--navy); margin: 0.5rem 0; }
+.muted { color: var(--muted); }
+
+/* Seat map: CSS Grid, one cell per seat (columns set from JS) */
+.front { text-align: center; padding: 0.4rem; border: 2px dashed var(--line); border-radius: 6px; margin-bottom: 0.75rem; font-weight: 700; }
+.seat-grid { display: grid; gap: 4px; overflow-x: auto; }
+.seat-cell { border: 1px solid var(--line); border-radius: 6px; padding: 4px; min-height: 3.2rem; background: var(--seat); font-size: 0.72rem; text-align: center; }
+.seat-cell .label { font-weight: 700; display: block; }
+.seat-cell.taken { background: var(--seat-taken); }
+.seat-cell.blocked { background: var(--seat-blocked); color: var(--muted); }
+.legend { display: flex; gap: 1rem; flex-wrap: wrap; font-size: 0.85rem; margin-top: 0.75rem; }
+.legend span::before { content: ""; display: inline-block; width: 0.9rem; height: 0.9rem; margin-right: 0.3rem; border-radius: 3px; vertical-align: -2px; border: 1px solid var(--line); }
+.legend .l-free::before { background: var(--seat); }
+.legend .l-taken::before { background: var(--seat-taken); }
+.legend .l-blocked::before { background: var(--seat-blocked); }
+
+.hidden { display: none !important; }
+
+/* Printing the proctor seat map: hide everything except the map and the list */
+@media print {
+  body { background: #fff; }
+  .app-header, .no-print { display: none !important; }
+  .panel { padding: 0; border-radius: 0; }
+  .container { width: 100%; margin: 0; }
+  .seat-cell { min-height: 2.6rem; font-size: 8pt; break-inside: avoid; }
+  table { font-size: 9pt; }
+  .print-break { break-before: page; }
+}

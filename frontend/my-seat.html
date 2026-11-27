@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>My Seat – Exam Seating Planner</title>
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+<header class="app-header">
+  <h1>Exam Seating Planner</h1>
+  <nav>
+    <span id="who" class="who"></span>
+    <button id="logout" class="secondary" type="button">Log out</button>
+  </nav>
+</header>
+<main class="container">
+  <section class="panel">
+    <h2>My exam seats</h2>
+    <p class="muted">Only published seating plans for upcoming exams are shown.</p>
+    <div id="seat-cards" class="cards"></div>
+    <p id="seat-message" class="message" aria-live="polite"></p>
+  </section>
+</main>
+<script src="js/config.js" defer></script>
+<script src="js/api.js" defer></script>
+<script src="js/my-seat.js" defer></script>
+</body>
+</html>

@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Seat Map – Exam Seating Planner</title>
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+<header class="app-header">
+  <h1>Exam Seating Planner</h1>
+  <nav>
+    <a id="back" href="index.html">Back</a>
+    <span id="who" class="who"></span>
+    <button id="logout" class="secondary" type="button">Log out</button>
+  </nav>
+</header>
+<main class="container">
+  <section class="panel">
+    <div class="row no-print">
+      <button id="print" type="button">Print / Save as PDF</button>
+    </div>
+    <h2 id="map-title"></h2>
+    <p id="map-details" class="muted"></p>
+    <p id="map-message" class="message no-print" aria-live="polite"></p>
+    <div class="front">FRONT (exam desk)</div>
+    <div id="seat-grid" class="seat-grid"></div>
+    <div class="legend"><span class="l-free">Free</span><span class="l-taken">Student</span><span class="l-blocked">Blocked</span></div>
+  </section>
+  <section class="panel print-break">
+    <h2>Attendance list (by student code)</h2>
+    <table>
+      <thead><tr><th>Student code</th><th>Name</th><th>Seat</th><th>Signature</th></tr></thead>
+      <tbody id="list-rows"></tbody>
+    </table>
+  </section>
+</main>
+<script src="js/config.js" defer></script>
+<script src="js/api.js" defer></script>
+<script src="js/seat-map.js" defer></script>
+</body>
+</html>
