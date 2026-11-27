@@ -6,7 +6,7 @@ const { badRequest } = require('./errors');
 
 function validate(schemas) {
   return (req, _res, next) => {
-    req.valid = {};
+    req.valid = req.valid || {}; // allow several validate() steps on one route
     for (const part of ['params', 'query', 'body']) {
       if (!schemas[part]) continue;
       const result = schemas[part].safeParse(req[part] ?? {});

@@ -18,7 +18,7 @@ const procs = [
 
 const colors = [36, 33, 35, 32, 34, 31];
 const children = procs.map(([name, file], i) => {
-  const child = spawn(process.execPath, ['--watch', file], { cwd: root, env: process.env });
+  const child = spawn(process.execPath, ['--watch-path=' + path.dirname(file), '--watch-path=shared', file], { cwd: root, env: process.env });
   const tag = `\x1b[${colors[i % colors.length]}m[${name}]\x1b[0m`;
   const out = (data) => data.toString().split('\n').filter(Boolean).forEach((l) => console.log(tag, l));
   child.stdout.on('data', out);

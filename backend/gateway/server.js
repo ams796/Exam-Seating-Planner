@@ -16,7 +16,7 @@ const ROUTES = [
   [/^\/api\/auth(\/|$)/, 'auth'],
   [/^\/api\/halls(\/|$)/, 'halls'],
   [/^\/api\/exams\/[^/]+\/(allocation|halls\/[^/]+\/seat-map)(\/|$)/, 'allocation'],
-  [/^\/api\/(allocations|me\/seats)(\/|$)/, 'allocation'],
+  [/^\/api\/(allocations|me)(\/|$)/, 'allocation'],
   [/^\/api\/(exams|holidays|users)(\/|$)/, 'exams'],
 ];
 

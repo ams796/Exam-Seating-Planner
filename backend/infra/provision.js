@@ -241,7 +241,7 @@ async function provisionCompute() {
       const listener = await warn('listener :80', async () => (await elb.send(new ELB.CreateListenerCommand({ LoadBalancerArn: albArn, Protocol: 'HTTP', Port: 80, DefaultActions: [{ Type: 'fixed-response', FixedResponseConfig: { StatusCode: '404', ContentType: 'application/json', MessageBody: '{"error":{"code":"NOT_FOUND"}}' } }] }))).Listeners[0].ListenerArn);
       const rules = [
         [10, ['/api/auth*'], 'auth'], [20, ['/api/halls*'], 'halls'],
-        [30, ['/api/exams/*/allocation*', '/api/exams/*/halls/*/seat-map'], 'allocation'], [40, ['/api/allocations*', '/api/me/seats*'], 'allocation'],
+        [30, ['/api/exams/*/allocation*', '/api/exams/*/halls/*/seat-map'], 'allocation'], [40, ['/api/allocations*', '/api/me/*'], 'allocation'],
         [50, ['/api/exams*', '/api/holidays*', '/api/users*'], 'exams'],
       ];
       for (const [Priority, paths, s] of rules) {
