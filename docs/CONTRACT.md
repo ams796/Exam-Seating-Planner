@@ -147,6 +147,7 @@ Failed messages are retried 3 times, then go to `esp-allocation-events-dlq`. The
 - **My seats** (student, id from JWT only). **Seat map** (admin, or the proctor assigned to that hall, published plans only).
 - **Worker** (`services/allocation/worker.js`): long-polls SQS and applies section 6.
 - AWS: SQS (+DLQ), S3, CloudWatch metrics, Secrets Manager.
+- **Status: implemented.** The rules, lifecycle, move/publish checks and lookups were written by Attallah (team repo commit `0840a36`, Lab 5 structure). They were ported into this service (`engine.js`, `allocationService.js`, `routes.js`). His "cross-service functions" became the SQS worker (`reconcile.js`, `worker.js`). Advisory locks per exam stop two admins (or an admin and the worker) changing a plan at the same time. Tests: `npm run test:alloc` (25 cases).
 
 ### Exams — Nour
 - Create/edit an exam with halls:
